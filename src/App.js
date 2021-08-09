@@ -1,25 +1,80 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import ProductList from './ProductList'
+
+import { Grid } from '@material-ui/core'
+
+import { Link, Route,Switch,Redirect } from 'react-router-dom'
+import ProductDetails from './ProductDetails'
+import DeleteProducts from './DeleteProduct'
+import CreateProduct from './CreateProduct'
+import EditProducts from './EditProduct'
+
+
+
+
+
+const App=()=>{
+  return(
+    <>
+    <Link to='/add-product'>Add Product</Link>
+  <Link to='/product-details'></Link>
+  <Link to='/product-list'></Link>
+  <Link to='/edit-product/:id'>Edit</Link>
+  
+    
+    <Grid container justifyContent={'center'}>
+
+    <Switch>
+        <Route exact path='/edit-product/:id'>
+          <EditProducts/>
+        </Route>
+        <Route exact path='/add-product'>
+          <CreateProduct/>
+        </Route>
+        <Route exact path='/delete-product/:id'>
+          <DeleteProducts/>
+        </Route>
+
+        <Route exact path='/product-details/:id'>
+
+          <ProductDetails/>
+
+        </Route>
+
+        <Route exact path='/product-list'>
+
+        <ProductList/>
+
+        </Route>
+
+        <Route path='*'>
+          <p>404</p>
+          </Route>
+
+      </Switch>
+
+    
+
+  
+     
+      <Redirect to='/product-list'/>
+
+    
+
+    </Grid>
+
+  
+
+   
+   
+
+
+    
+
+    </>
+  )
+
 }
 
-export default App;
+export default App
