@@ -4,6 +4,10 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import { BounceLoader } from 'react-spinners'
+import { Grid } from '@material-ui/core'
+import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
+import './App.css'
 
 const EditProducts=()=>{
 
@@ -52,32 +56,45 @@ const EditProducts=()=>{
 
 
     return(
-    <>
+    <div>
 
-<div>
+
+
+    
 
     {loading? <BounceLoader loading={loading}/>:
-    <>
-     <div>
-                
-               
-                <p>Product Name</p>
-                <input defaultValue={product.title}  value={product.title} onChange={(e)=>{UpdateProduct(e,'title')}}/>
-            </div>
-            <div>
-                <p>Product Decription</p>
-                <input defaultValue={product.description} value={product.description} onChange={(e)=>{UpdateProduct(e,'description')}}/>
-            </div>
-            <div>
-                <p>Product Price</p>
-                <input defaultValue={product.price} value={product.price} onChange={(e)=>{UpdateProduct(e,'price')}}/>
-            </div>
-            <div>
-                <p>Product Category</p>
-                <input defaultValue={product.image} value={product.image} onChange={(e)=>{UpdateProduct(e,'image')}}/>
-            </div>
+    <><Grid container spacing={3}>
 
-            <button onClick={UpdateRequest}>Submit</button>
+        
+
+
+    
+    <Grid item xs={12} sm={6}>
+    <p>Product Name</p>
+    <input defaultValue={product.title}  value={product.title} onChange={(e)=>{UpdateProduct(e,'title')}}/>
+     </Grid>
+
+    <Grid item xs={12} sm={6}>
+    <p>Product Decription</p>
+    <input defaultValue={product.description} value={product.description} onChange={(e)=>{UpdateProduct(e,'description')}}/>
+      </Grid>
+
+    
+
+    <Grid item xs={12} sm={6}>
+    <p>Product Price</p>
+    <input defaultValue={product.price} value={product.price} onChange={(e)=>{UpdateProduct(e,'price')}}/>
+     
+    </Grid>
+
+    <Grid item xs={12} sm={6}>
+    <p>Product Category</p>
+    <input defaultValue={product.image} value={product.image} onChange={(e)=>{UpdateProduct(e,'image')}}/>
+    </Grid>
+
+    </Grid>
+
+<Button onClick={UpdateRequest}>Submit</Button>
      
     </>}
            
@@ -86,9 +103,15 @@ const EditProducts=()=>{
      
      
 
-        </div>
+
+
+    
+
+    
+
+       
   
-    </>
+    </div>
     )
 
 }
