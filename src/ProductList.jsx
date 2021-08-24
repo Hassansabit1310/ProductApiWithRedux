@@ -10,6 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux'
 import setProductList from './store/action/productLisstAction'
 import { useSelector } from 'react-redux'
+import { requestProductList } from './store/action/productLisstAction'
 
 
 import Button from '@material-ui/core/Button'
@@ -44,11 +45,14 @@ const ProductList=()=>{
       const classes = useStyles();
 
     useEffect(()=>{
-        axios.get('https://fakestoreapi.com/products').then(response=>{setProduct(response.data);dispatch(setProductList(response.data))}).then(() => {
-            setLoading(false)
+
+        dispatch(requestProductList())
+        setLoading(false)
+        // axios.get('https://fakestoreapi.com/products').then(response=>{setProduct(response.data);dispatch(setProductList(response.data))}).then(() => {
+        //     setLoading(false)
                
-           }).catch(error=>{console.log(error)})
-    },[])
+        //    }).catch(error=>{console.log(error)})
+    },[dispatch])
     console.log(product)
     const SeeDetails=(id)=>{
 

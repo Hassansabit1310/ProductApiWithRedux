@@ -1,4 +1,4 @@
-import { Update } from '@material-ui/icons'
+import { Store, Update } from '@material-ui/icons'
 import axios from 'axios'
 import React, { useEffect } from 'react'
 import { useState } from 'react'
@@ -7,9 +7,14 @@ import { BounceLoader } from 'react-spinners'
 import { Grid } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
+import { useSelector } from 'react-redux'
+
 import './App.css'
 
 const EditProducts=()=>{
+    const {currentProduct}=useSelector(store=>store.detailsStore)
+
+
 
     const history=useHistory()
 
@@ -71,25 +76,25 @@ const EditProducts=()=>{
     
     <Grid item xs={12} sm={6}>
     <p>Product Name</p>
-    <input defaultValue={product.title}  value={product.title} onChange={(e)=>{UpdateProduct(e,'title')}}/>
+    <input defaultValue={currentProduct.title}  value={currentProduct.title} onChange={(e)=>{UpdateProduct(e,'title')}}/>
      </Grid>
 
     <Grid item xs={12} sm={6}>
     <p>Product Decription</p>
-    <input defaultValue={product.description} value={product.description} onChange={(e)=>{UpdateProduct(e,'description')}}/>
+    <input defaultValue={currentProduct.description} value={currentProduct.description} onChange={(e)=>{UpdateProduct(e,'description')}}/>
       </Grid>
 
     
 
     <Grid item xs={12} sm={6}>
     <p>Product Price</p>
-    <input defaultValue={product.price} value={product.price} onChange={(e)=>{UpdateProduct(e,'price')}}/>
+    <input defaultValue={currentProduct.price} value={currentProduct.price} onChange={(e)=>{UpdateProduct(e,'price')}}/>
      
     </Grid>
 
     <Grid item xs={12} sm={6}>
     <p>Product Category</p>
-    <input defaultValue={product.image} value={product.image} onChange={(e)=>{UpdateProduct(e,'image')}}/>
+    <input defaultValue={currentProduct.image} value={currentProduct.image} onChange={(e)=>{UpdateProduct(e,'image')}}/>
     </Grid>
 
     </Grid>
